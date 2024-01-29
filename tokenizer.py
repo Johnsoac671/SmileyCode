@@ -2,16 +2,17 @@ import regex
 
 tokens = [
     ("WHITESPACE", r"\s+"),
+    ("COMMENT", r"💭.*?💭"),
     ("BOOLEAN", r"True|False"),
     ("FLOAT", r'\d+\.\d+'),
     ("INTEGER", r"\d+"),
+    ("OPERATOR", r"\+|-|/|\*|==|!=|>|<|>=|<=|\+=|-=|\*="),
     ("STRUCTURE", r"🙂|😴|➡️|⬅️|⏩|⏪|⏭️|⏮️|🔄️|🚫"),
     ("STRING", r'\\\".*\\"'),
-    ("IDENTIFIER", r"\w+|\p{Emoji}+")
-    
+    ("KEYWORD", r"\w+|\p{Emoji}+")
 ]
 
-
+IGNORE = ["WHITESPACE", "COMMENT"]
 
 
 
@@ -21,33 +22,36 @@ class Token:
         self.type = type
         self.value = value
         
-def tokenize(code):
-    position = 0
-    tokenized = []
-    
-    while position < len(code):
-        matched = None
+class Tokenizer:
+    def __init__(self):
+        self.tokenized = []
+       
+    def tokenize(self, code):
+        position = 0
         
-        for token_type, pattern in tokens:
-            reg = regex.compile(pattern)
-            matched = reg.match(code, position)
+        while position < len(code):
+            matched = None
             
-            if matched:
-                token_value = matched.group(0)
+            for token_type, pattern in tokens:
+                reg = regex.compile(pattern)
+                matched = reg.match(code, position)
                 
-                if token_type != "WHITESPACE" and token_value != "\uFE0F":
-                    tokenized.append(Token(token_type, token_value))
+                if matched:
+                    token_value = matched.group(0)
+                    
+                    if token_type not in IGNORE and token_value != "\uFE0F":
+                        self.tokenized.append(Token(token_type, token_value))
+                    
+                    position = matched.end()
+                    break
                 
-                position = matched.end()
-                break
-            
-        if not matched:
-            raise ValueError(f"Unrecognized symbol at {position}")
-        
-    return tokenized
+            if not matched:
+                raise ValueError(f"Unrecognized symbol at {position}")            
 
-result = tokenize(r"🙂 ⚙️ 👁️ ⏩ \"Hello, World!\" ⏪ 🚫 😴")
 
-for token in result:
-    print(f"Type: {token.type}, Value: {token.value}")
+if __name__ == "__main__":
+    test = Tokenizer()
+    test.tokenize("")
+    for token in test.tokenized:
+        print(f"Type: {token.type}, Value: {token.value}")
 
