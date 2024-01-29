@@ -14,7 +14,7 @@ comments
 
 functions
     <declaration> <func symbol> <name> <args> = <body> return <end symbol> 📝 ⚙️ name ⏩arg1, arg2, etc⏪ 🟰 ⏭️ ... ⏮️ ↩️ <return value>🚫
-    <func symbol> <name> <args>                                             ⚙️ name ⏩arg1, arg2, etc⏪ 🚫, ⚙️ name ⏩⏪
+    <func symbol> <name> <args>                                             ⚙️ name ⏩arg1, arg2, etc⏪ 🚫, ⚙️ name ⏩⏪ 🚫
 
 operators
     +                                                                       ➕
@@ -23,7 +23,7 @@ operators
     *                                                                       ✖️
 
     ==                                                                      🔎
-    !=                                                                      🔎⛔
+    !=                                                                      ⛔🔎
 
     >                                                                       🐋 ?
     <                                                                       🐢 ?
