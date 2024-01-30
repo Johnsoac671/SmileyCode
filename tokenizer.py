@@ -3,11 +3,12 @@ import regex
 tokens = [
     ("WHITESPACE", r"\s+"),
     ("COMMENT", r"💭.*?💭"),
-    ("BOOLEAN", r"True|False"),
+    ("BOOLEAN", r"✅|❌"),
     ("FLOAT", r'\d+\.\d+'),
     ("INTEGER", r"\d+"),
-    ("OPERATOR", r"\+|-|/|\*|🔎|🔎⛔|🐋|🐢|🐬|🐊"),
+    ("OPERATOR", r"\+|-|/|\*|🔎|⛔|🐋|🐢|🐬|🐊"),
     ("STRUCTURE", r"🙂|😴|➡️|⬅️|⏩|⏪|⏭️|⏮️|🔄️|🚫|\(|\)|💡"),
+    ("TYPE", r"⚙️|🧵|🧮|🎳|👻"),
     ("STRING", r'\\"(.*?)\\"'),
     ("KEYWORD", r"\w+|\p{Emoji}+")
 ]
