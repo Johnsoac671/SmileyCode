@@ -3,25 +3,25 @@ An Emoji-based programming language
 
 Brief overview (subject to change):
 
-<start symbol>                                                              🙂
+start_symbol                                                                🙂
 
 variable declaration
-    <declaration symbol> <type> <name> = <value> <end symbol>               📝 <type> name 🟰 value 🚫
+    declaration_symbol type name = value end_symbol                         📝 type name 🟰 value 🚫
     
     string                                                                  🧵
     integer                                                                 🧮
     float                                                                   🎳
     boolean                                                                 👻 ✅ | ❌
-    array                                                                   📁 <type>, ➡️val0, val1, val2, ...⬅️
+    array                                                                   📁 type, ➡️val0, val1, val2, ...⬅️
 
-    call variable                                                           💡<variable name>
+    call variable                                                           💡variable name
 
 comments
-    <comment> <body>                                                        💭 this is a comment 💭
+    comment body                                                            💭 this is a comment 💭
 
 functions
-    <declaration> <func symbol> <name> <args> = <body> return <end symbol> 📝 ⚙️ name ⏩arg1, arg2, etc⏪ 🟰 ⏭️ ... ⏮️ ↩️ <return value>🚫
-    <func symbol> <name> <args>                                             ⚙️ name ⏩arg1, arg2, etc⏪ 🚫, ⚙️ name ⏩⏪ 🚫
+    declaration func_symbol name args = body return end_symbol 📝 ⚙️ name ⏩arg1, arg2, etc⏪ 🟰 ⏭️ ... ⏮️ ↩️ return_value🚫
+    func_symbol name args                                                   ⚙️ name ⏩arg1, arg2, etc⏪ 🚫, ⚙️ name ⏩⏪ 🚫
 
 operators
     +                                                                       ➕
@@ -42,9 +42,9 @@ operators
     NOT                                                                     ⛔
 
 conditional
-    <if symbol> conditional <then> <body> <else symbol> <body> <end symbol> ❔ conditional 👉 ⏭️ ... ⏮️ ⭕ ⏭️ ... ⏮️ 🚫
+    if_symbol conditional then body else_symbol body end_symbol             ❔ conditional 👉 ⏭️ ... ⏮️ ⭕ ⏭️ ... ⏮️ 🚫
 
 loop
-    <loop symbol> conditional <body> <end loop symbol>                      🔄️ conditional ⏭️ ... ⏮️ 🚫
+    loop_symbol conditional body end_symbol                                 🔄️ conditional ⏭️ ... ⏮️ 🚫
 
-<end of file>          
+end_of_file                                                                 😴
