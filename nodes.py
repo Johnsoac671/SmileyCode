@@ -57,6 +57,7 @@ class OperatorNode(Node):
                
             case "⛓️":
                 return left or right
+            
    
             
 class UnaryOperatorNode(Node):
@@ -80,10 +81,10 @@ class UnaryOperatorNode(Node):
                 
                 
 class FunctionDef:
-    def __init__(self, name, body, args=None):
-        self.name = name
-        self.args = args
-        self.body = body
+    def __init__(self):
+        self.name = None
+        self.args = []
+        self.body: Node = None
         
     def evaluate(self):
         #creates a subtree, and evaluates that
@@ -106,7 +107,7 @@ class LoopNode(IfNode):
         
 
                       
-class NameNode(LeafNode):
+class CallNode(LeafNode):
     def __init__(self, name):
         super().__init__(name)
         
