@@ -9,6 +9,8 @@ variable declaration
     boolean                                                                 👻 ✅ | ❌
     array                                                                   📁 <type>, ➡️val0, val1, val2, ...⬅️
 
+    call variable                                                           💡<variable name>
+
 comments
     <comment> <body>                                                        💭 this is a comment 💭
 
@@ -38,6 +40,6 @@ conditional
     <if symbol> conditional <then> <body> <else symbol> <body> <end symbol> ❔ conditional 👉 ⏭️ ... ⏮️ ⭕ ⏭️ ... ⏮️ 🚫
 
 loop
-    <loop symbol> conditional <body> <end loop symbol>                      🔄️ conditional ⏭️ ... ⏮️ 🔄️🚫
+    <loop symbol> conditional <body> <end loop symbol>                      🔄️ conditional ⏭️ ... ⏮️ 🚫
 
 <end of file>                                                               😴
