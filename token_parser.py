@@ -1,4 +1,4 @@
-from nodes import FunctionDef, Literal, OperatorNode, UnaryOperatorNode, CallNode
+from nodes import FunctionDef, Literal, OperatorNode, UnaryOperatorNode, CallNode, AssignNode
 from tokenizer import Tokenizer, Token
     
 class Parser:
@@ -26,12 +26,28 @@ class Parser:
                 if declaration_type == "⚙️":
                     self.define_func(tokenizer)
                 else:
-                    types = {}
+                    
+                    types = {
+                        "🧵" : str,
+                        "🧮" : int,
+                        "🎳" : float,
+                        "👻" : bool
+                    }
+                    
+                    name = next(tokenizer)
+                    next(tokenizer)
+                    value = next(tokenizer)
+                    
+                    node = AssignNode(name, value)
                 
             case "⏮️":
                 body = self.stack.pop()
                 func: FunctionDef = self.stack.pop()
                 func.body = body
+                
+            case "🙂":
+                programFunc = FunctionDef()
+                programFunc.name = "main"
                 
                         
     def define_func(self, tokenizer: Tokenizer):
