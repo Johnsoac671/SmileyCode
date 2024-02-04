@@ -57,7 +57,15 @@ class OperatorNode(Node):
                
             case "⛓️":
                 return left or right
-            
+
+class AssignNode(LeafNode):
+    def __init__(self, name, value):
+        super().__init__(value)
+        self.name = name
+    
+    def evaluate():
+        # registers name : value pair in lookup dict
+        pass
    
             
 class UnaryOperatorNode(Node):
