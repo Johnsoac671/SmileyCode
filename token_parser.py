@@ -3,7 +3,7 @@ from tokenizer import Tokenizer, Token
     
 class Parser:
     def __init__(self):
-        self.stack = []
+        self.stack = Stack
         
     def parse(self, tokenizer: Tokenizer):
         token = next(tokenizer)
@@ -15,9 +15,23 @@ class Parser:
             
             case "TYPE":
                 pass
+
+class Stack:
+    
+    def __init__(self):
+        self.stack = [[]]
+    
+    def append(self, value):
+        self.stack[-1].append(value)
+    
+    def pop_stack(self):
+        return self.stack.pop()
+    
+    def pop(self):
+        return self.stack[-1].pop()
+        
                 
     def parse_structure(self, token: Token, tokenizer: Tokenizer):
-        
         match token.value:
             
             case "📝":
@@ -34,27 +48,32 @@ class Parser:
                         "👻" : bool
                     }
                     
-                    name = next(tokenizer)
+                    name = next(tokenizer).value
                     next(tokenizer)
-                    value = next(tokenizer)
-                    
-                    node = AssignNode(name, value)
+                    value = next(tokenizer).value
+    
+                    node = AssignNode(name, value, types[declaration_type.value])
+                    self.stack.append(node)
                 
             case "⏮️":
-                body = self.stack.pop()
-                func: FunctionDef = self.stack.pop()
+                body = self.stack.pop_stack()
+                func = self.stack.pop()
                 func.body = body
+                self.stack.append(func)
+                
                 
             case "🙂":
                 programFunc = FunctionDef()
                 programFunc.name = "main"
+                
+                self.stack.append(programFunc)
                 
                         
     def define_func(self, tokenizer: Tokenizer):
                         
         func = FunctionDef()
             
-        func.name = next(tokenizer)
+        func.name = next(tokenizer).value
         
         current_token = next(tokenizer).value
         self.check_token("⏩", current_token)
@@ -71,10 +90,22 @@ class Parser:
         current_token = next(tokenizer).value
         self.check_token("⏭️", current_token)
         
-        self.stack += func
+        self.stack.append(func)
         
                         
     def check_token(self, expected, token):
         
         if token != expected:
             raise SyntaxError(f"{expected} expected")
+        
+if __name__ == "__main__":
+    test = Tokenizer(r"🙂 📝 🧵 bob 🟰 \"Bob\" 🚫 😴")
+
+    test2 = Parser()
+    try:
+        while True:
+            test2.parse(test)
+    except:
+        print(test2.stack[0].name)
+        print(test2.stack[0].body[0].name)
+        print(test2.stack[0].body[0].value)
