@@ -59,13 +59,15 @@ class OperatorNode(Node):
                 return left or right
 
 class AssignNode(LeafNode):
-    def __init__(self, name, value):
+    def __init__(self, name, value, var_type):
         super().__init__(value)
         self.name = name
+        self.var_type = var_type
     
     def evaluate():
         # registers name : value pair in lookup dict
         pass
+    
    
             
 class UnaryOperatorNode(Node):
@@ -92,7 +94,7 @@ class FunctionDef:
     def __init__(self):
         self.name = None
         self.args = []
-        self.body: Node = None
+        self.body = []
         
     def evaluate(self):
         #creates a subtree, and evaluates that
@@ -125,7 +127,7 @@ class CallNode(LeafNode):
   
                 
 class Literal(LeafNode):
-    def __init__(self, literal_type:function, value):
+    def __init__(self, literal_type, value):
         super().__init__(value)
         self.literal_type = literal_type
         
